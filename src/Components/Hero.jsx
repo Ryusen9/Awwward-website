@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { useState } from "react";
+import Button from "./Button";
+import { TiLocationArrow } from "react-icons/ti";
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -40,9 +42,49 @@ const Hero = () => {
               ></video>
             </div>
           </div>
-          <video ref={nextVdRef} src={getVideoSrc(currentIndex)}></video>
+          <video
+            ref={nextVdRef}
+            src={getVideoSrc(currentIndex)}
+            loop
+            muted
+            id="next-video"
+            className="absolute-center invisible z-20 absolute size-64 object-cover object-center"
+            onLoadedData={handleVideoLoad}
+          ></video>
+          <video
+            src={getVideoSrc(
+              currentIndex === totalVideos - 1 ? 1 : currentIndex
+            )}
+            autoPlay
+            loop
+            muted
+            className="absolute left-0 top-0 size-full object-cover object-center"
+            onLoadedData={handleVideoLoad}
+          ></video>
+        </div>
+        <h1 className="special-font absolute bottom-5 right-5 hero-heading z-40 text-blue-75">
+          G<b>a</b>ming
+        </h1>
+        <div className="absolute top-0 left-0 z-40 size-full">
+          <div className="mt-24 px-5 sm:px-10">
+            <h1 className="special-font hero-heading text-blue-100">
+              redefi<b>n</b>e
+            </h1>
+            <p className="font-robert-regular mb-5 max-w-64 text-blue-100">
+              Enter the MetaGame Layer, <br /> Unleash the play economy.
+            </p>
+            <Button
+              id="watch-trailer"
+              title="Watch Trailer"
+              leftIcon={<TiLocationArrow />}
+              containerClass="!bg-yellow-300 flex-center gap-1"
+            />
+          </div>
         </div>
       </div>
+      <h1 className="special-font absolute bottom-5 right-5 hero-heading z-40 text-black">
+        G<b>a</b>ming
+      </h1>
     </div>
   );
 };
