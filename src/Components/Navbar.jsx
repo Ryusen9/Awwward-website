@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import navImage from "/public/img/logo.png";
 import Button from "./Button";
 import { TiLocationArrow } from "react-icons/ti";
@@ -6,7 +6,19 @@ import { TiLocationArrow } from "react-icons/ti";
 const Navbar = () => {
   const menuItems = ["Home", "Nexus", "About", "Support"];
   const navRef = useRef(null);
-  const toggleAudioIndecator = () => {};
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [isIndicatorActive, setIsIndicatorActive] = useState(false);
+  const toggleAudioIndecator = () => {
+    setIsAudioPlaying(prev => !prev);
+    setIsIndicatorActive(prev =>!prev);
+  };
+  useEffect(() => {
+    if (isAudioPlaying) {
+      audioElementRef.current.play();
+    } else {
+      audioElementRef.current.pause();
+    }
+  }, [isAudioPlaying])
   const audioElementRef = useRef(null);
   return (
     <div
@@ -45,13 +57,18 @@ const Navbar = () => {
               ref={audioElementRef}
               className="hidden"
               loop
-            >
-              {[1, 2, 3, 4, 5].map(bar => (
-                <div key={bar} className={`indicator-line`}>
-
-                </div>
+            />
+              {[1, 2, 3, 4, 5].map((bar) => (
+                <div
+                  key={bar}
+                  className={`indicator-line ${
+                    isIndicatorActive ? "active" : ""
+                  }`}
+                  style={{
+                    animationDelay: `${bar * 0.1}s`,
+                  }}
+                />
               ))}
-            </audio>
           </button>
         </nav>
       </header>
