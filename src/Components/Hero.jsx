@@ -124,7 +124,7 @@ const Hero = () => {
         <div className="absolute top-0 left-0 z-40 size-full">
           <div className="mt-24 px-5 sm:px-10">
             <h1 className="special-font hero-heading text-blue-100">
-              redefi<b>n</b>e
+            redefi<b>n</b>e
             </h1>
             <p className="font-robert-regular mb-5 max-w-64 text-blue-100">
               Enter the MetaGame Layer, <br /> Unleash the play economy.
